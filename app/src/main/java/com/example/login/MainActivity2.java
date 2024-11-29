@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.navigation.NavController;
@@ -20,6 +21,7 @@ import com.example.login.databinding.ActivityMain2Binding;
 public class MainActivity2 extends AppCompatActivity {
     TextView loginView;
     TextView passwordView;
+    Button przyciskPowrotu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +33,29 @@ public class MainActivity2 extends AppCompatActivity {
         passwordView = findViewById(R.id.passwordView);
 
         Intent intent = getIntent();
-        loginView.setText(intent.getStringExtra("login"));
-        passwordView.setText(intent.getStringExtra("password"));
+        loginView.setText("Login: " + intent.getStringExtra("login"));
+        passwordView.setText("Hashowane hasło: " + intent.getStringExtra("password").hashCode());
 
+
+        przyciskPowrotu = findViewById(R.id.returnButton);
+
+        przyciskPowrotu.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity2.this, MainActivity.class);
+
+                startActivity(intent);
+
+            }
+
+        });
     }
+
+
+
+
+
 }
